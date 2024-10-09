@@ -1,14 +1,18 @@
 import { Sequelize } from "sequelize-typescript";
 import Users from '../models/Users'
 import Products from '../models/Products'
+import Pedidos from "../models/Pedidos";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 
-const databaseUrl= 'postgresql://dossocios_user:FfmhkOlmWHH2DwQursgHBnJgxshxBmZR@dpg-crsq0pu8ii6s73eftgfg-a.oregon-postgres.render.com/dossocios?ssl=true'
+const databaseUrl= process.env.DATABASE_URL
 
 
 const db = new Sequelize(databaseUrl,{
     dialect:'postgres',
-    models:[Users,Products]
+    models:[Users,Products,Pedidos]
 })
 
 export default db;
