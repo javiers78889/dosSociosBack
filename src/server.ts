@@ -1,6 +1,7 @@
 import db from "./config/db"
 import express from 'express'
 import { router } from './routes/routes';
+import cors from 'cors'
 const connectDb = async () => {
     try {
         await db.authenticate()
@@ -16,8 +17,13 @@ const connectDb = async () => {
 connectDb()
 
 const app = express();
+app.use(cors({
+    origin: '*', // Permite solicitudes de todos los orígenes (ajustar según sea necesario)
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use('/', router)
 
 export default app
+
+
