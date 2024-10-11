@@ -37,6 +37,12 @@ class Pedidos extends Model {
     })
     direccion!: string
 
+    @Column({
+        type: DataType.STRING(1000),
+        allowNull: false
+    })
+    estado!: string
+
 
 }
 

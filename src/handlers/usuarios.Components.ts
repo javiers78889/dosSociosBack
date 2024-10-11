@@ -6,6 +6,9 @@ import { check } from 'express-validator';
 
 export const selectUsers = async (req, res) => {
     const findUsers = await Users.findAll();
+    if (findUsers.length <= 0) {
+        res.json({ mensaje: 'No hay usuarios Registrados' })
+    }
     res.json(findUsers)
 }
 
@@ -64,10 +67,27 @@ export const ValidationUser = async (req, res, next) => {
             res.json({ token })
 
         }
+    }
 
+};
 
+export const updateUsers = async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+        const usuario = await Users.findByPk(id);
+
+        if (usuario) {
+            await usuario.update(req.body)
+            res.status(201).json({ mensaje: 'Datos de Usuario Actualizados' })
+
+        }
+    } catch (error) {
+        console.error(error)
 
     }
 
 
-};
+
+}
