@@ -20,6 +20,7 @@ const app = express();
 app.use(cors({
     origin: '*', // Permite solicitudes de todos los orígenes (ajustar según sea necesario)
 }))
+app.use(express.static('uploads'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use('/', router)

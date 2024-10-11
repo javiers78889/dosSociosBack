@@ -23,7 +23,8 @@ export const CreateProducts = async (req: Request, res: Response) => {
       return; // Salir después de enviar la respuesta
     }
     // Obtener la URL de la imagen subida
-    const imageUrl = `/uploads/${req.file.filename}`
+    const imageUrl = req.file.filename
+    console.log(imageUrl)
 
     // Crear el producto con los datos del cuerpo de la solicitud (req.body) y la URL de la imagen
     const producto = await Products.create({
