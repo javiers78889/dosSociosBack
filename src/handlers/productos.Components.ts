@@ -49,12 +49,19 @@ export const CreateProducts = async (req: Request, res: Response) => {
 export const UpdateProducts = async (req, res) => {
 
   const { id } = req.params
+  const imageUrl = req.file.filename
 
   const products = await Products.findByPk(id);
 
   try {
 
-    products.update(req.body);
+    if (imageUrl) {
+      products.update({ imagen: imageUrl, ...req.body })
+    }
+    else{
+      
+      products.update(req.body);
+    }
     res.status(201).json('Producto Actualizado')
 
   } catch (error) {

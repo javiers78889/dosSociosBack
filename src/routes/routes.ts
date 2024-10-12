@@ -20,7 +20,7 @@ router.put('/users/:id', existUser, updateUsers)
 // Productos
 router.get('/products', selectProducts)
 router.post('/products', autorizacion, upload.single('imagen'), CreateProducts)
-router.put('/products/:id', autorizacion, UpdateProducts)
+router.put('/products/:id', autorizacion, upload.single('imagen'), UpdateProducts)
 router.delete('/products/:id', deleProducts)
 
 // Pedidos
