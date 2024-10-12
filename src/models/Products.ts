@@ -22,6 +22,11 @@ class Products extends Model {
         allowNull: false
     })
     cantidad!: Number
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false
+    })
+    precio!: Number
 
     @Column({
         type: DataType.STRING(1000),
