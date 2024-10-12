@@ -18,9 +18,9 @@ export const CreateUsers = async (req: Request, res: Response, next: NextFunctio
 
 
 
-    const { password, ...rest } = req.body;
+    const { password, ...rest } = req.body.trim;
     const hashpwd = await bcrypt.hash(password, 12)
-    const usuario = { password: hashpwd, ...rest }
+    const usuario = { password: hashpwd.trim(), ...rest }
 
     const guardar = await Users.create(usuario)
 
@@ -39,8 +39,10 @@ export const CreateUsers = async (req: Request, res: Response, next: NextFunctio
 export const ValidationUser = async (req, res, next) => {
     const { user, password } = req.body;
 
+    const us = user.trim()
 
-    const usuario = await Users.findOne({ where: { user } });
+
+    const usuario = await Users.findOne({ where: { user:us } });
 
 
     if (!usuario) {
@@ -48,7 +50,7 @@ export const ValidationUser = async (req, res, next) => {
     }
     else {
 
-        const verify = await bcrypt.compare(password, usuario.dataValues.password)
+        const verify = await bcrypt.compare(password.trim(), usuario.dataValues.password)
         if (!verify) {
             return res.status(401).json({ mensaje: 'Password Incorrecto' });
         }
