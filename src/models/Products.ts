@@ -21,11 +21,6 @@ class Products extends Model {
         type: DataType.INTEGER,
         allowNull: false
     })
-    cantidad!: Number
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false
-    })
     precio!: Number
 
     @Column({

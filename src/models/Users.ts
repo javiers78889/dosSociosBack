@@ -22,6 +22,11 @@ class Users extends Model {
         allowNull: false
     })
     telefono!: string;
+    @Column({
+        type: DataType.STRING(50), // Longitud más razonable para teléfono
+        allowNull: false
+    })
+    role!: string;
 
     @Column({
         type: DataType.STRING(255),
