@@ -18,7 +18,7 @@ class Products extends Model {
     description!: String;
 
     @Column({
-        type: DataType.INTEGER,
+        type: DataType.FLOAT,
         allowNull: false
     })
     precio!: Number

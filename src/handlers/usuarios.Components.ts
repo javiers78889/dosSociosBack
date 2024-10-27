@@ -18,7 +18,7 @@ export const CreateUsers = async (req: Request, res: Response, next: NextFunctio
 
 
 
-    const { password, ...rest } = req.body.trim;
+    const { password, ...rest } = req.body;
     const hashpwd = await bcrypt.hash(password, 12)
     const usuario = { password: hashpwd.trim(), ...rest }
 
